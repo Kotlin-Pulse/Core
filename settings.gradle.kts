@@ -4,3 +4,4 @@ plugins {
 rootProject.name = "Core"
 
 include("launcher")
+include("dependency-loader")

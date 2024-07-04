@@ -2,6 +2,7 @@ package me.pulse.launcher;
 
 import me.pulse.launcher.util.FileManager;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.jar.JarFile;
 
@@ -32,8 +33,8 @@ public class CoreManager {
         }
 
         try {
-            var mainMethod = mainClass.getMethod("main", String[].class);
-            mainMethod.invoke(null, (Object) args);
+            var mainMethod = mainClass.getMethod("main", File.class, String[].class);
+            mainMethod.invoke(null, fileManager.getCore(), args);
         } catch (Exception e) {
             throw new IllegalStateException("Couldn't start main class", e);
         }

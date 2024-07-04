@@ -78,17 +78,29 @@ public class DependencyManager {
             throw new IllegalStateException("Couldn't find or load dependency-loader class", e);
         }
 
+        List<File> dependencies;
         try {
             var method = loaderInstance.getClass().getDeclaredMethod(loaderMethodName);
             method.setAccessible(true);
 
-            // 1. The method should return a List<URL>
+            // 1. The method should return a List<File>
             // 2. If it doesn't, we cache the ClassCastException
             //noinspection unchecked
-            return (List<URL>) method.invoke(loaderInstance);
+            dependencies = (List<File>) method.invoke(loaderInstance);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | ClassCastException e) {
             throw new IllegalStateException("Couldn't find or invoke dependency-loader method", e);
         }
+
+        var urls = new ArrayList<URL>();
+        for (var file : dependencies) {
+            try {
+                urls.add(file.toURI().toURL());
+            } catch (IOException e) {
+                throw new IllegalStateException("Couldn't convert dependency file to URL", e);
+            }
+        }
+
+        return urls;
     }
 
 }
