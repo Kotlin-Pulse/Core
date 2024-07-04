@@ -1,13 +1,14 @@
 package me.pulse.dependency.data
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import me.pulse.launcher.util.WebUtil
 import org.eclipse.aether.repository.RemoteRepository
 import java.io.File
 import java.net.URI
 import java.net.URL
 
-data class Repository(val url: String) {
+data class Repository(@JsonProperty("url") val url: String) {
 
     @JsonIgnore
     internal val pathUrl = if (url.endsWith('/')) url else "$url/"

@@ -1,13 +1,14 @@
 package me.pulse.dependency.data
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.core.type.TypeReference
 import java.io.File
 
 data class Dependency(
-    val group: String,
-    val artifact: String,
-    val version: String,
+    @JsonProperty("group") val group: String,
+    @JsonProperty("artifact") val artifact: String,
+    @JsonProperty("version") val version: String,
 ) {
 
     @JsonIgnore

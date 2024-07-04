@@ -61,7 +61,7 @@ class MavenDependencyResolver(
         repositories.forEach { repository ->
             if (dependency !in repository) return@forEach
 
-            log("Downloading $dependency from $repository")
+            log("Downloading $dependency")
             return repository[dependency, cacheDirectory]
         }
 

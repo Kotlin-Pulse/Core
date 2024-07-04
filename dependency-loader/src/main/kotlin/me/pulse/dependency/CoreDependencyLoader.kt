@@ -23,10 +23,10 @@ class CoreDependencyLoader(
             MavenDependencyResolver.mapper.readValue(stream, DependenciesFile.reference)
         }
 
-        val repositories = dependencies.repositories.takeIf { it.isNotEmpty() }
+        val repositories = dependencies.repositories?.takeIf { it.isNotEmpty() }
             ?: listOf(Repository("https://repo.maven.apache.org/maven2/"))
 
-        return resolver.resolve(repositories, dependencies.dependency)
+        return resolver.resolve(repositories, dependencies.dependencies)
     }
 
 }
