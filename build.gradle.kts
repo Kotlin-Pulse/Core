@@ -6,6 +6,9 @@ plugins {
 }
 
 allprojects {
+    apply(plugin = "kotlin")
+    apply(plugin = "java-library")
+
     group = "me.pulse"
     version = "0.0.0"
 

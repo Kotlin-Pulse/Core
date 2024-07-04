@@ -3,3 +3,4 @@ plugins {
 }
 rootProject.name = "Core"
 
+include("launcher")
