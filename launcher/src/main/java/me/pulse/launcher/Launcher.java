@@ -29,6 +29,8 @@ public class Launcher {
         ClassLoader dependencyClassLoader = createDependencyClassLoader(fileManager, dependencyManager);
         ClassLoader coreClassLoader = createCoreClassLoader(fileManager, dependencyManager, dependencyClassLoader);
 
+        Thread.currentThread().setContextClassLoader(coreClassLoader);
+
         coreManager.start(coreClassLoader);
     }
 
