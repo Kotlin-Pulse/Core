@@ -11,7 +11,7 @@ import java.net.URL;
 
 public record Dependency(String group, String artifact, String version) {
 
-    private static final String CENTRAL = "https://repo1.maven.org/maven2/";
+    private static final String CENTRAL = "https://repo.maven.apache.org/maven2/";
 
     public String getName() {
         return artifact + "-" + version;
