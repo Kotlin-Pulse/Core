@@ -13,9 +13,7 @@ tasks {
     jar {
         dependsOn("generateBom")
 
-        from(layout.buildDirectory.dir("generated").get().file("dependency-loader.txt")) {
-            rename("dependency-loader.txt", "dependencies.txt")
-        }
+        from(layout.buildDirectory.dir("generated").get().file("dependencies.txt"))
 
         manifest {
             attributes["Loader-Class"] = "me.pulse.dependency.CoreDependencyLoader"
@@ -39,7 +37,7 @@ tasks {
             .get()
             .asFile
             .also { it.mkdirs() }
-            .resolve("dependency-loader.txt")
+            .resolve("dependencies.txt")
             .writeText(dependencies.joinToString("\n"))
     }
 }
